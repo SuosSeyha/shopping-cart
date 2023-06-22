@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_build_shopping_card1/cart.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
@@ -29,9 +30,20 @@ class DBHelper{
   
   _onCreate(Database db,int version)async{
     await db.execute(
-      'CREATE TABLE $table($colid PRIMARY KEY, $colproductId VARCHAR UNIQUE, $colproductName TEXT, $colinitialPrice INTEGER, $colquantity INTEGER, $colunitTag TEXT)'
+      'CREATE TABLE $table($colid INTEGER PRIMARY KEY, $colproductId VARCHAR UNIQUE, $colproductName TEXT, $colinitialPrice INTEGER, $colquantity INTEGER, $colunitTag TEXT)'
     );
   }
+
+  Future<Cart> insert(Cart cart)async{
+    var dbClient = await database;
+    await dbClient!.insert(
+      table,
+      cart.toMap()
+      );
+      debugPrint('Insert successful');
+      return cart;
+  }
+
 
   Future<List<Cart>> getCartList()async{
     var dbClient = await database;
