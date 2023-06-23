@@ -50,13 +50,22 @@ class _HomepageState extends State<Homepage> {
         ),
         actions: [
          badges.Badge(
-          badgeContent: Text(
-            cardProvider.getCounter().toString()
+          badgeContent: Consumer<CardProvider>(
+              builder: (context, value, child) {
+                return Text(
+                  value.getCounter().toString(),
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold
+                  ),
+                );
+              },
           ),
           position: const BadgePosition(start: 25, bottom: 25),
           child: IconButton(
             onPressed: () {
-              nextScreen(context, const CartScreen());
+              nextScreen(context,  CartScreen());
             },
             icon: const Icon(Icons.shopping_cart),
           ),

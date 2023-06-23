@@ -27,9 +27,9 @@ class Cart {
     'productName': productName,
     'initialPrice': initialPrice,
     'productPrice': productPrice,
-    'unitTang': unitTag,
+    'unitTag': unitTag,
     'image': image,
-    'quantitity': quantity!.value
+    'quantity': quantity!.value
   };
  }
 
